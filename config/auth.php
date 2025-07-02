@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+        ],
+
+        'healthcare_professionals' => [
+            'driver' => 'sanctum',
+            'provider' => 'healthcare_professionals',
+        ],
     ],
 
     /*
@@ -62,9 +72,14 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
         ],
-
+        
+        'healthcare_professionals' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\HealthcareProfessional::class,
+        ],
+        
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
