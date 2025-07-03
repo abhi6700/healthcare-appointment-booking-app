@@ -17,9 +17,13 @@ class HpAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if (!$user instanceof HealthcareProfessional) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
+         if (!$user) {
+        return response()->json(['message' => 'Token not provided'], 401);
+    }
+
+    if (!$user instanceof HealthcareProfessional) {
+        return response()->json(['message' => 'Unauthorized - Not a Healthcare Professional'], 403);
+    }
 
         return $next($request);
     }
